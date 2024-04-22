@@ -1,0 +1,31 @@
+#form{
+    margin: 10vh 70vh;
+    width: 60vh;
+}
+#outputsection{
+    /* margin: 20vh 30vh; */
+    display: flex;
+    flex-direction: row;
+    /* border: 2px solid black; */
+}
+#left{
+    border: 2px solid black;
+    width: 50vh;
+    height: 40vh;
+    border-right: none;
+}
+#right{
+    width: 100vh;
+    height: 40vh;
+    border: 2px solid black;
+}
+#output{
+    margin: 20vh 30vh;
+}
+#searchbar{
+    margin-left: 68vh;
+    
+}
+#searchbar input{
+    width: 40vh;
+}
