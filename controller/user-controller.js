@@ -40,3 +40,43 @@ exports.postadddetails = (req,res,next)=>{
     })
 
 }
+
+
+exports.getfetchdetails = async (req, res, next) => {
+    try {
+        const inputsearch = req.params.inputdata;
+        console.log('Search query:', inputsearch);
+        const player = await playerdata.findOne({ where: { name: inputsearch } });
+            // If player data is found, send it back as part of the response
+            res.status(200).json({ message: 'Success', data: player });
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+
+// exports.getfetchdetails = (req, res, next) => {
+//     console.log(req.query);
+//     const inputsearch = req.query.inputdata;
+//     console.log('data : ' + inputsearch);
+//     res.json("abcd")
+    // playerdata.findOne({ where: { name: inputsearch } })
+    //     .then(result => {
+    //         console.log("found the Player : "+ result.dob)
+                //  res.redirect('/');
+    //     })
+    //     .catch(err => {
+    //         console.log(err);
+    //     });
+    // res.redirect('/postdata');
+// }
+// exports.postdata = (req,res,next)=>{
+//     console.log("reacher : ")
+//     // .then((result)=>{
+//     //     console.log("Added Player data")
+//     // })
+//     // .catch((err)=>{
+//     //     console.log(err);
+//     // })
+// }

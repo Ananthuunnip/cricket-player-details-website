@@ -26,7 +26,7 @@ const playerdata = sequelize.define('players', {
         allowNull: false
     },
     career: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
         allowNull: false
     },
     nomatch: {

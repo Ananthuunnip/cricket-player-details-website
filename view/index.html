@@ -15,14 +15,7 @@
 <body>
 	<div>
 		<div id="nav">
-			<nav class="navbar bg-body-tertiary">
-				<div class="container" id="searchbar">
-				  <form action="/fetchdetails" id="fetchdetails" action="post" class="d-flex" role="search">
-				    <input class="form-control me-2" type="search" placeholder="Search" name="inputsearch" id="inputsearch" aria-label="Search">
-				    <button class="btn btn-outline-success" type="submit">Search</button>
-				  </form>
-				</div>
-			</nav>
+			
 		</div>
 		<div id='section'>
 			<div id="form">
@@ -82,23 +75,114 @@
 				</form>
 			</div>
 		</div>
+		<nav class="navbar bg-body-tertiary">
+			<div class="container" id="searchbar">
+				<form id="fetchdetails" class="d-flex" role="search">
+					<input class="form-control me-2" type="text" placeholder="Search" id="inputdata" name="inputdata" aria-label="Search">
+					<button class="btn btn-outline-success" type="submit">Search</button>
+				</form>					 
+			</div>
+		</nav>
 		<!-- output section -->
 		<div id="output">
-			
-			<h3>output</h3>
 			<div id="outputsection">
-				<div id="left">
-	
+				<!-- <div id="left">
 				</div>
 				<div id="right">
-	
-				</div>
+				</div> -->
 			</div>
-
 		</div>
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.5/axios.min.js"></script>
 	<script>
+		
+		const searchForm = document.getElementById('fetchdetails');
+		
+		searchForm.addEventListener("submit", async (event) => {
+			event.preventDefault();
+			const output = document.getElementById('outputsection');
+			const left = document.createElement('div');
+			left.id = "left"
+			const right = document.createElement('div');
+			right.id = "right"
+			output.appendChild(left)
+			output.appendChild(right)
+			const indata = document.getElementById('inputdata').value
+			try {
+				const res = await axios.get(`http://localhost:3000/fetchdetails/${indata}`);
+				console.log("Response:", res.data.data); 
+				const leftbox = document.getElementById('left');
+				const rightbox = document.getElementById('right');
+
+				const image = document.createElement('img');
+				const imgdiv = document.createElement('div');
+				imgdiv.style.height = '50px';
+				imgdiv.style.width = '50px';
+				image.id = "profileimg"
+				image.src = res.data.data.photourl
+
+				const playername = document.createElement('h3');
+				playername.id = "playername"
+				playername.textContent = res.data.data.name;
+				
+				const playerdob = document.createElement('p')
+				playerdob.textContent = res.data.data.dob;
+				playerdob.id = "playerdob"
+				
+				const heading = document.createElement('h3');
+				heading.id = "heading"
+				heading.textContent = "Personal Informations";
+				
+				
+				const nomatches = document.createElement('h3');
+				nomatches.id = "nomatches"
+				nomatches.textContent ="No Of Matches : "+  res.data.data.nomatch;
+				
+				
+				const runs = document.createElement('h3');
+				runs.id = "runs"
+				runs.textContent ="Runs : "+  res.data.data.score;
+				
+				
+				const fifties = document.createElement('h3');
+				fifties.id = "fifties"
+				fifties.textContent = "Fifties : "+ res.data.data.fifties;
+				
+				
+				const century = document.createElement('h3');
+				century.id = "century"
+				century.textContent ="Century : "+  res.data.data.century;
+				
+				
+				const avg = document.createElement('h3');
+				avg.id = "avg"
+				avg.textContent ="Average : "+  res.data.data.average;
+				
+				
+				const career = document.createElement('p');
+				career.id = "avg"
+				career.textContent =res.data.data.career;
+
+
+				
+
+				imgdiv.appendChild(image);
+				leftbox.appendChild(imgdiv); 
+				leftbox.appendChild(playername);
+				leftbox.appendChild(playerdob); 
+				leftbox.appendChild(heading); 
+				leftbox.appendChild(heading); 
+				leftbox.appendChild(nomatches); 
+				leftbox.appendChild(runs); 
+				leftbox.appendChild(fifties); 
+				leftbox.appendChild(century); 
+				leftbox.appendChild(avg); 
+
+				rightbox.appendChild(career);
+			} catch (error) {
+				console.error("Error:", error);
+			}
+		});
 
 	</script>
 </body>

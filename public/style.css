@@ -9,14 +9,20 @@
     /* border: 2px solid black; */
 }
 #left{
+    padding: 5vh;
     border: 2px solid black;
     width: 50vh;
-    height: 40vh;
+    height: 60vh;
     border-right: none;
+    border-top-left-radius: 2vh;
+    border-bottom-left-radius: 2vh;
 }
 #right{
+    border-top-right-radius: 2vh;
+    border-bottom-right-radius: 2vh;
+    padding: 7vh;
     width: 100vh;
-    height: 40vh;
+    height: 60vh;
     border: 2px solid black;
 }
 #output{
@@ -28,4 +34,19 @@
 }
 #searchbar input{
     width: 40vh;
+}
+
+#profileimg{
+    height: 15vh;
+    width: 15vh;
+    /* border: 2px solid red; */
+    border-radius: 10vh;
+}
+#output h3{
+    font-size: 2.5vh;
+    /* color:red; */
+}
+#playername{
+    margin-top: 10vh;
+
 }
